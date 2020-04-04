@@ -17,7 +17,9 @@ export default class Home extends Component {
     const imageURL = "http://image.tmdb.org/t/p/w300";
     const moviePoster = this.state.movies.map((movie, index) => {
       return (
-        <div key={index}>{`${imageURL}${movie.poster_path}`}</div>
+        <div key={index}>
+          <img src={`${imageURL}${movie.poster_path}`} alt=''/>
+        </div>
       )
     })
 
