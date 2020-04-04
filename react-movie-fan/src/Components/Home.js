@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import config from '../config'
+import config from '../config';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 
 export default class Home extends Component {
 
@@ -18,7 +19,9 @@ export default class Home extends Component {
     const moviePoster = this.state.movies.map((movie, index) => {
       return (
         <div className="col s3" key={index}>
-          <img src={`${imageURL}${movie.poster_path}`} alt=''/>
+          <Link to={`/movie/${movie.id}`}>
+            <img src={`${imageURL}${movie.poster_path}`} alt=''/>
+          </Link>
         </div>
       )
     })
