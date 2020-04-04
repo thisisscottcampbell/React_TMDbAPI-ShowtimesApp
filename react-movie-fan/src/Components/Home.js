@@ -17,14 +17,14 @@ export default class Home extends Component {
     const imageURL = "http://image.tmdb.org/t/p/w300";
     const moviePoster = this.state.movies.map((movie, index) => {
       return (
-        <div key={index}>
+        <div className="col s3" key={index}>
           <img src={`${imageURL}${movie.poster_path}`} alt=''/>
         </div>
       )
     })
 
     return (
-      <div>
+      <div className="row">
         <h1>{moviePoster}</h1>
       </div>
     )
