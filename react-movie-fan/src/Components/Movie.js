@@ -4,20 +4,32 @@ import config from '../config'
 
 export default class Movie extends Component {
   
-  state = { movie: '' }
+  state = { movie: {} }
   
-  componenetDiDMount = async() => {
+  // componenetDiDMount = () => {
+  //  const mid = this.props.match.params.movieId
+  //   const singleMovieUrl = `https://api.themoviedb.org/3/movie/${mid}?api_key=${config.api_key}`
+  //   axios.get(singleMovieUrl).then((response) => {
+  //     this.setState({ movie: response.data })
+  //   })
+  // }
+  componentDidMount(){
     const id = this.props.match.params.movieId
     const movieURL = `https://api.themoviedb.org/3/movie/${id}?api_key=${config.api_key}`
-    const response = await axios.get(movieURL);
-    this.setState({ movie: response.data.results })
+    axios.get(movieURL).then((response)=>{
+        console.log(response.data);
+        this.setState({
+            movie: response.data
+        })
+    })
   }
+
  
 
   render() {
-    // if(this.state.movie.title === undefined) {
-    //   return (<h1>Loading... </h1>)
-    // }
+    if(this.state.movie.title === undefined) {
+      return (<h1>Loading... </h1>)
+    }
 
     const imageURL = `http://image.tmdb.org/t/p/w300${this.state.movie.poster_path}`;
     return (
